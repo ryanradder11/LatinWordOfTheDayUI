@@ -3,19 +3,13 @@
     <h1>{{ title }}</h1>
   </header>
   <main>
-    <section *if="wordOfTheDay$ | async as wordOfTheDay; else loading">
+    @if (wordOfTheDay$ | async){
       <h2>Word of the Day</h2>
-      <p><strong>Word:</strong> {{ wordOfTheDay.word }}</p>
-      <p><strong>Meaning:</strong> {{ wordOfTheDay.meaning }}</p>
-    </section>
-    <ng-template #loading>
-      <p>Loading...</p>
-    </ng-template>
+      <p><strong>Word:</strong> {{ wordOfTheDay$ | async | json }}</p>
+    } @else {
+        <p>Loading...</p>
+    }
   </main>
 </div>
 
-<ng-container *defer>
-  <footer>
-    <p>Additional content loaded with &#64;defer</p>
-  </footer>
-</ng-container>
+
