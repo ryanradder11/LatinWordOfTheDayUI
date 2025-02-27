@@ -4,6 +4,7 @@ import {WordOfTheDay} from './models/word-of-the-day.model';
 import {WordOfTheDayService} from './services/word-of-the-day.service';
 
 @Component({
+  standalone: false,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
