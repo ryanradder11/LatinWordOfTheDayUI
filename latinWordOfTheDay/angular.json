@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "latinWordOfTheDay:build:production"
+              "buildTarget": "latinWordOfTheDay:build:production"
             },
             "development": {
-              "browserTarget": "latinWordOfTheDay:build:development"
+              "buildTarget": "latinWordOfTheDay:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "latinWordOfTheDay:build"
+            "buildTarget": "latinWordOfTheDay:build"
           }
         },
         "test": {
