@@ -11,7 +11,7 @@ export class WordOfTheDayService {
 
   private http = inject(HttpClient);
 
-  public getWordOfTheDay(): Observable<WordOfTheDay> {
-    return this.http.get<WordOfTheDay>(`${environment.apiUrl}/items`);
+  public getWordOfTheDay(): Observable<WordOfTheDay[]> {
+    return this.http.get<WordOfTheDay[]>(`${environment.apiUrl}/items`);
   }
 }
