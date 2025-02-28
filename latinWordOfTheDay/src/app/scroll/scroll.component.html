@@ -1,0 +1,17 @@
+<div class="scroll parchment">
+  <section class="word-section">
+    <div class="word-content">
+      <img src="{{ 'http://latinwordoftheday.com/img/' + wordOfTheDay.image }}"
+           alt="{{ wordOfTheDay.word }}" class="word-image scroll-shadow" />
+      <div class="word-details">
+        <p class="word roman-font"><strong>📖 {{ wordOfTheDay.word | capitalize }}</strong></p>
+        <p class="definition"><strong>📚 Meaning:</strong> {{ wordOfTheDay.definition }}</p>
+        <p class="pronunciation"><strong>🔊 Pronunciation:</strong> {{ wordOfTheDay.pronunciation }}</p>
+        <p class="origin"><strong>🌍 Origin:</strong> {{ wordOfTheDay.origin }}</p>
+        <p class="example"><strong>✍️ Example:</strong> {{ wordOfTheDay.example }}</p>
+        <p class="synonyms"><strong>🔄 Synonyms:</strong> {{ wordOfTheDay.synonyms.join(', ') }}</p>
+        <p class="antonyms"><strong>🔁 Antonyms:</strong> {{ wordOfTheDay.antonyms.join(', ') }}</p>
+      </div>
+    </div>
+  </section>
+</div>
