@@ -17,6 +17,11 @@
   font-style: italic;
 }
 
+.word{
+  text-align: center;
+  font-size: 1.5rem;
+}
+
 .word-content {
   display: flex;
   flex-direction: column;
@@ -24,7 +29,7 @@
 }
 
 .word-image {
-  width: 200px;
+  width: 250px;
   height: auto;
   border: 3px solid #8b0000;
   border-radius: 10px;
