@@ -5,7 +5,7 @@ export interface WordOfTheDay {
   pronunciation: string;
   origin: string;
   example0: string;
-  example_latin: string;
+  example0_latin: string;
   example1: string;
   example1_latin: string;
   example2: string;
