@@ -1,0 +1,8 @@
+@if (wordOfTheDay$ | async) {
+  @let wordOfTheDay = wordOfTheDay$ | async;
+  @if (wordOfTheDay)  {
+    <app-scroll [wordOfTheDay]="wordOfTheDay"></app-scroll>
+  }
+} @else {
+  <p class="loading-message">📜 Verba inveniuntur... (Loading...)</p>
+}
