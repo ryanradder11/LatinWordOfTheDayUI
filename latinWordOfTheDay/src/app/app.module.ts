@@ -5,8 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {CommonModule} from '@angular/common';
 import { provideHttpClient } from '@angular/common/http';
-import {CapitalizePipe} from "./pipes/capitalize.pipe";
-import {ScrollComponent} from "./scroll/scroll.component";
+import {Menubar} from "primeng/menubar";
+import {providePrimeNG} from "primeng/config";
+import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
+import Material from '@primeng/themes/material';
+
 
 @NgModule({
   declarations: [
@@ -16,10 +19,17 @@ import {ScrollComponent} from "./scroll/scroll.component";
     CommonModule,
     BrowserModule,
     AppRoutingModule,
-    CapitalizePipe,
-    ScrollComponent
+    Menubar
   ],
-  providers: [provideHttpClient()],
+  providers: [provideHttpClient(),  provideAnimationsAsync(),
+    providePrimeNG({
+      theme: {
+        preset: Material,
+        options: {
+          darkModeSelector: '.my-app-dark'
+        }
+      }
+    })],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

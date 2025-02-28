@@ -1,3 +1,4 @@
+@use 'primeflex/primeflex.scss';
 
 *{
   margin: 0;
@@ -6,26 +7,18 @@
 }
 
 body {
-  background-color: #f4f1e9;
+  background: #f4f1e9;
   font-family: "Garamond", serif;
   text-align: center;
 }
 
-.container {
-  max-width: 800px;
+.container {background: #f4f1e9;
+  width: 100%;
   margin: auto;
   padding: 20px;
-  background: #fff8dc;
-  border: 5px solid #8b4513;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-
-
-.loading-message {
-  font-style: italic;
-  color: #8b4513;
-}
 
 
 //

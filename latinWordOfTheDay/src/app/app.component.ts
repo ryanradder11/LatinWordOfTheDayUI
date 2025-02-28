@@ -1,8 +1,5 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {of, Observable} from 'rxjs';
-import {WordOfTheDay} from './models/word-of-the-day.model';
-import {WordOfTheDayService} from './services/word-of-the-day.service';
-import {DOCUMENT} from "@angular/common";
+import {Component, OnInit} from '@angular/core';
+import {MenuItem} from "primeng/api";
 
 @Component({
   standalone: false,
@@ -11,14 +8,49 @@ import {DOCUMENT} from "@angular/common";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Latin word of the day';
-  private wordOfTheDayService = inject(WordOfTheDayService);
-  private _document = inject(DOCUMENT);
+  title = 'Verbum Diei';
 
-  public url = this._document.location.hostname;
-  public wordOfTheDay$: Observable<WordOfTheDay> = this.wordOfTheDayService.getWordOfTheDay();
+  items: MenuItem[] | undefined;
+
+  public toggleDarkMode() {
+    const element = document.querySelector('html');
+    element?.classList.toggle('my-app-dark');
+  }
 
   public ngOnInit() {
-    this.wordOfTheDay$ = this.wordOfTheDayService.getWordOfTheDay();
+    this.items = [
+      {
+        label: 'Verbum Diei',
+        icon: 'pi pi-home',
+        routerLink: '/home'
+      },
+      {
+        label: 'Favoriti',
+        icon: 'pi pi-star',
+        route: '/favorites',
+      },
+      {
+        label: 'Contact',
+        icon: 'pi pi-search',
+        items: [
+          {
+            label: 'About',
+            icon: 'pi pi-server',
+            routerLink: '/favorites'
+          },
+          {
+            label: 'Why',
+            icon: 'pi pi-server',
+            routerLink: '/favorites'
+          },
+          {
+            label: 'dōnāre',
+            icon: 'pi pi-bolt',
+            routerLink: '/favorites'
+          },
+
+        ]
+      }
+    ]
   }
 }

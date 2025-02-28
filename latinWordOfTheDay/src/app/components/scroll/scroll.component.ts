@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {WordOfTheDay} from "../models/word-of-the-day.model";
-import {CapitalizePipe} from "../pipes/capitalize.pipe";
+import {WordOfTheDay} from "../../models/word-of-the-day.model";
+import {CapitalizePipe} from "../../pipes/capitalize.pipe";
 
 @Component({
     selector: 'app-scroll',

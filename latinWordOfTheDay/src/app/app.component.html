@@ -1,6 +1,8 @@
-<div class="container">
+<html>
+<div class="container align-content-center">
+  <p-menubar [model]="items" />
   <header>
-    <h1 class="title">{{ title }}</h1>
+    <h1 class="title text-center mt-2 p-2">{{ title }}</h1>
   </header>
   <main>
     <div class="dots">
@@ -12,13 +14,9 @@
       <span class="dot" style="--i:14"></span>
     </div>
 
-      @if (wordOfTheDay$ | async) {
-        @let wordOfTheDay = wordOfTheDay$ | async;
-        @if (wordOfTheDay)  {
-          <app-scroll [wordOfTheDay]="wordOfTheDay"></app-scroll>
-        }
-      } @else {
-        <p class="loading-message">📜 Verba inveniuntur... (Loading...)</p>
-      }
   </main>
+
+  <router-outlet></router-outlet>
 </div>
+
+</html>
