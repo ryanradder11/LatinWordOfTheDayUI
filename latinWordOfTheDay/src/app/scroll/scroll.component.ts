@@ -3,11 +3,10 @@ import {WordOfTheDay} from "../models/word-of-the-day.model";
 import {CapitalizePipe} from "../pipes/capitalize.pipe";
 
 @Component({
-  selector: 'app-scroll',
-  standalone: true,
-  imports: [CapitalizePipe],
-  templateUrl: './scroll.component.html',
-  styleUrl: './scroll.component.scss'
+    selector: 'app-scroll',
+    imports: [CapitalizePipe],
+    templateUrl: './scroll.component.html',
+    styleUrl: './scroll.component.scss'
 })
 export class ScrollComponent {
 
