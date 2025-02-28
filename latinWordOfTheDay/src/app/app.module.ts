@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {CommonModule} from '@angular/common';
 import { provideHttpClient } from '@angular/common/http';
+import {CapitalizePipe} from "./pipes/capitalize.pipe";
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { provideHttpClient } from '@angular/common/http';
   imports: [
     CommonModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CapitalizePipe
   ],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent]

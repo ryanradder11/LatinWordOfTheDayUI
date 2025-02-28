@@ -2,6 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {of, Observable} from 'rxjs';
 import {WordOfTheDay} from './models/word-of-the-day.model';
 import {WordOfTheDayService} from './services/word-of-the-day.service';
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   standalone: false,
@@ -10,9 +11,11 @@ import {WordOfTheDayService} from './services/word-of-the-day.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'latinWordOfTheDay';
+  title = 'Latin word of the day';
   private wordOfTheDayService = inject(WordOfTheDayService);
+  private _document = inject(DOCUMENT);
 
+  public url = this._document.location.hostname;
   public wordOfTheDay$: Observable<WordOfTheDay | null>=  of(null);
 
   public ngOnInit() {
