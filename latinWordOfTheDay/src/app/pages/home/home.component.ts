@@ -18,4 +18,6 @@ export class HomeComponent {
   private wordOfTheDayService = inject(WordOfTheDayService);
 
   public wordOfTheDay$: Observable<WordOfTheDay> = this.wordOfTheDayService.getWordOfTheDay();
+
+  public title = 'Verbum Diei';
 }

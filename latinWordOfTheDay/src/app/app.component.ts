@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuItem} from "primeng/api";
+import {ROUTES_NAMES} from "./app-routing.module";
 
 @Component({
   standalone: false,
@@ -8,7 +9,7 @@ import {MenuItem} from "primeng/api";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Verbum Diei';
+
 
   items: MenuItem[] | undefined;
 
@@ -22,12 +23,12 @@ export class AppComponent implements OnInit {
       {
         label: 'Verbum Diei',
         icon: 'pi pi-home',
-        routerLink: '/home'
+        routerLink: `/${ROUTES_NAMES.HOME}`
       },
       {
         label: 'Favoriti',
         icon: 'pi pi-star',
-        route: '/favorites',
+        routerLink: `/${ROUTES_NAMES.FAVORITES}`,
       },
       {
         label: 'Contact',
@@ -36,19 +37,18 @@ export class AppComponent implements OnInit {
           {
             label: 'About',
             icon: 'pi pi-server',
-            routerLink: '/favorites'
+            routerLink:`/${ROUTES_NAMES.ABOUT}`
           },
           {
             label: 'Why',
             icon: 'pi pi-server',
-            routerLink: '/favorites'
+            routerLink: `/${ROUTES_NAMES.WHY}`
           },
           {
             label: 'dōnāre',
             icon: 'pi pi-bolt',
-            routerLink: '/favorites'
+            routerLink: `/${ROUTES_NAMES.DONATE}`
           },
-
         ]
       }
     ]

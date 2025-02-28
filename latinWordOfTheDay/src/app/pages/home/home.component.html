@@ -1,8 +1,13 @@
-@if (wordOfTheDay$ | async) {
-  @let wordOfTheDay = wordOfTheDay$ | async;
-  @if (wordOfTheDay)  {
-    <app-scroll [wordOfTheDay]="wordOfTheDay"></app-scroll>
+<div>
+
+  <h1 class="title text-center mt-2 p-2">{{ title }}</h1>
+
+  @if (wordOfTheDay$ | async) {
+    @let wordOfTheDay = wordOfTheDay$ | async;
+    @if (wordOfTheDay)  {
+      <app-scroll [wordOfTheDay]="wordOfTheDay"></app-scroll>
+    }
+  } @else {
+    <p class="loading-message">📜 Verba inveniuntur... (Loading...)</p>
   }
-} @else {
-  <p class="loading-message">📜 Verba inveniuntur... (Loading...)</p>
-}
+</div>
