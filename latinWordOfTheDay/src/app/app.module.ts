@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {CommonModule} from '@angular/common';
 import { provideHttpClient } from '@angular/common/http';
 import {CapitalizePipe} from "./pipes/capitalize.pipe";
+import {ScrollComponent} from "./scroll/scroll.component";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {CapitalizePipe} from "./pipes/capitalize.pipe";
     CommonModule,
     BrowserModule,
     AppRoutingModule,
-    CapitalizePipe
+    CapitalizePipe,
+    ScrollComponent
   ],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent]

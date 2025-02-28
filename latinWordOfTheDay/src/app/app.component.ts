@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   private _document = inject(DOCUMENT);
 
   public url = this._document.location.hostname;
-  public wordOfTheDay$: Observable<WordOfTheDay | null>=  of(null);
+  public wordOfTheDay$: Observable<WordOfTheDay> = this.wordOfTheDayService.getWordOfTheDay();
 
   public ngOnInit() {
     this.wordOfTheDay$ = this.wordOfTheDayService.getWordOfTheDay();

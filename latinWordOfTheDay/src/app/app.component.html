@@ -1,26 +1,24 @@
 <div class="container">
   <header>
-    <h3>{{ title }}</h3>
+    <h1 class="title">{{ title }}</h1>
   </header>
   <main>
-    @if (wordOfTheDay$ | async) {
-      @let wordOfTheDay = wordOfTheDay$ | async;
-      <section class="word-section">
-        <div class="word-content">
-          <img src="{{ 'http://latinwordoftheday.com/img/' + wordOfTheDay?.image }}" alt="{{ wordOfTheDay?.word }}" class="word-image" />
-          <div class="word-details">
-            <p class="word"><strong>{{ wordOfTheDay?.word ?? '' | capitalize }}</strong></p>
-            <p class="definition"><strong>Meaning:</strong> {{ wordOfTheDay?.definition }}</p>
-            <p class="pronunciation"><strong>Pronunciation:</strong> {{ wordOfTheDay?.pronunciation }}</p>
-            <p class="origin"><strong>Origin:</strong> {{ wordOfTheDay?.origin }}</p>
-            <p class="example"><strong>Example:</strong> {{ wordOfTheDay?.example }}</p>
-            <p class="synonyms"><strong>Synonyms:</strong> {{ wordOfTheDay?.synonyms?.join(', ') }}</p>
-            <p class="antonyms"><strong>Antonyms:</strong> {{ wordOfTheDay?.antonyms?.join(', ') }}</p>
-          </div>
-        </div>
-      </section>
-    } @else {
-      <p>Loading...</p>
-    }
+    <div class="dots">
+      <span class="dot" style="--i:15;"></span>
+      <span class="dot" style="--i:19;"></span>
+      <span class="dot" style="--i:17;"></span>
+      <span class="dot" style="--i:11;"></span>
+      <span class="dot" style="--i:12"></span>
+      <span class="dot" style="--i:14"></span>
+    </div>
+
+      @if (wordOfTheDay$ | async) {
+        @let wordOfTheDay = wordOfTheDay$ | async;
+        @if (wordOfTheDay)  {
+          <app-scroll [wordOfTheDay]="wordOfTheDay"></app-scroll>
+        }
+      } @else {
+        <p class="loading-message">📜 Verba inveniuntur... (Loading...)</p>
+      }
   </main>
 </div>
