@@ -10,6 +10,7 @@ export enum ROUTES_NAMES {HOME= 'home', FAVORITES= 'favorites', ABOUT = 'about',
 
  const routes: Routes = [
    {path: '', redirectTo: ROUTES_NAMES.HOME, pathMatch: 'full'},
+   { path: `${ROUTES_NAMES.HOME}/:id`, component: HomeComponent },
    { path: ROUTES_NAMES.HOME, component: HomeComponent },
    { path: ROUTES_NAMES.FAVORITES, component: FavoritesComponent },
    { path: ROUTES_NAMES.ABOUT, component: AboutComponent },

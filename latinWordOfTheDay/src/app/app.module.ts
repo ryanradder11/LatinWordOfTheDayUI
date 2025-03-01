@@ -9,6 +9,11 @@ import {Menubar} from "primeng/menubar";
 import {providePrimeNG} from "primeng/config";
 import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
 import Material from '@primeng/themes/material';
+import {StoreModule} from "@ngrx/store";
+import {EffectsModule} from "@ngrx/effects";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {wordOfTheDayReducer} from "./store/word-of-the-day.reducer";
+import {WordOfTheDayEffects} from "./store/word-of-the-day.effects";
 
 
 @NgModule({
@@ -19,7 +24,10 @@ import Material from '@primeng/themes/material';
     CommonModule,
     BrowserModule,
     AppRoutingModule,
-    Menubar
+    Menubar,
+    StoreModule.forRoot({wordOfTheDay: wordOfTheDayReducer}), // Provide mock store
+    EffectsModule.forRoot([WordOfTheDayEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: true }),
   ],
   providers: [provideHttpClient(),  provideAnimationsAsync(),
     providePrimeNG({

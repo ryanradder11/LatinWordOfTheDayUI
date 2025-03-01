@@ -1,9 +1,12 @@
 import {Component, inject} from '@angular/core';
 import {map, Observable} from "rxjs";
-import {WordOfTheDay} from "../../models/word-of-the-day.model";
-import {WordOfTheDayService} from "../../services/word-of-the-day.service";
 import {ScrollComponent} from "../../components/scroll/scroll.component";
 import {AsyncPipe} from "@angular/common";
+import {Store} from "@ngrx/store";
+import {loadWordOfTheDay, loadWordOfTheDayByFavorite} from "../../store/word-of-the-day.actions";
+import {selectWordOfTheDay} from "../../store/word-of-the-day.selectors";
+import {WordOfTheDay} from "../../store/word-of-the-day.state";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -15,13 +18,25 @@ import {AsyncPipe} from "@angular/common";
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  private wordOfTheDayService = inject(WordOfTheDayService);
 
-  public wordOfTheDay$: Observable<WordOfTheDay> = this.wordOfTheDayService.getWordOfTheDay().pipe(
-    map((wordOfTheDay: WordOfTheDay[]) => {
-      return wordOfTheDay[0];
-    })
-  );
+  private store = inject(Store);
+
+  private route = inject(ActivatedRoute);
+
+  public wordOfTheDay$: Observable<WordOfTheDay> = new Observable<WordOfTheDay>();
 
   public title = 'Verbum Diei';
+
+  constructor() {
+
+    this.route.paramMap.subscribe(params => {
+      console.log(params.get('id'));
+      if(params.has('id')){
+        this.store.dispatch(loadWordOfTheDayByFavorite({favoriteId: params.get('id') ?? ''}));
+      }else{
+        this.store.dispatch(loadWordOfTheDay());
+      }
+      this.wordOfTheDay$ = this.store.select(selectWordOfTheDay).pipe(map((wordOfTheDay: WordOfTheDay[]) => wordOfTheDay[0]));
+    });
+  }
 }

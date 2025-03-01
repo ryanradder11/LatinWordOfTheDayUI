@@ -1,1 +1,26 @@
-<p>favorites works!</p>
+
+<div class="container">
+
+<h1 class="title text-center mt-2 p-2">{{ title }}</h1>
+
+
+@if (favorites$ | async) {
+  @let favorites = favorites$ | async;
+  @if (favorites)  {
+
+    <div class="scroll">
+      <ul>
+        @for ( favorite of favorites$  | async; track favorite) {
+          <li class="favorite cursor-pointer" [routerLink]="['/home', favorite.id]">
+            <span class="fav-id">#{{favorite.id}}</span>
+            <span class="fav-word">{{favorite.word | capitalize}}</span>
+          </li>
+        }
+      </ul>
+    </div>
+
+  }
+} @else {
+  <p class="loading-message">📜 Verba inveniuntur... (Loading...)</p>
+}
+</div>

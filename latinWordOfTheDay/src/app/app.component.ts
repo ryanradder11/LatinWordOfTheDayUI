@@ -31,21 +31,21 @@ export class AppComponent implements OnInit {
         routerLink: `/${ROUTES_NAMES.FAVORITES}`,
       },
       {
-        label: 'Contact',
+        label: 'Explorare',
         icon: 'pi pi-search',
         items: [
           {
-            label: 'About',
+            label: 'De factore',
             icon: 'pi pi-server',
             routerLink:`/${ROUTES_NAMES.ABOUT}`
           },
           {
-            label: 'Why',
+            label: 'Rur',
             icon: 'pi pi-server',
             routerLink: `/${ROUTES_NAMES.WHY}`
           },
           {
-            label: 'dōnāre',
+            label: 'Dōnāre',
             icon: 'pi pi-bolt',
             routerLink: `/${ROUTES_NAMES.DONATE}`
           },

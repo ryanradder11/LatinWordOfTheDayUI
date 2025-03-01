@@ -1,1 +1,32 @@
-@use 'primeflex/primeflex.scss';
+.favorite-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.favorite {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 10px 15px;
+  margin: 5px 0;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.favorite:hover {
+  transform: scale(1.03);
+}
+
+.fav-id {
+  font-size: 14px;
+  color: #888;
+}
+
+.fav-word {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}

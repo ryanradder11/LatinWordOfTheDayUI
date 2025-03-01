@@ -1,16 +1,17 @@
-<div class="scroll parchment">
+<div class="scroll">
+  <button class="favorite-button" (click)="toggleFavorite()">{{ wordOfTheDay.isFavorite ? '⭐' : '☆' }}</button>
   <section class="word-section">
     <div class="word-content">
-      <img src="{{ 'http://latinwordoftheday.com/img/' + wordOfTheDay.image }}"
+      <img src="{{ '/img/' + wordOfTheDay.image }}"
            alt="{{ wordOfTheDay.word }}" class="word-image scroll-shadow" />
       <div class="word-details">
         <p class="word roman-font"><strong>📖 {{ wordOfTheDay.word | capitalize }}</strong></p>
         <p class="definition"><strong>📚 Meaning:</strong> {{ wordOfTheDay.definition }}</p>
         <p class="pronunciation"><strong>🔊 Pronunciation:</strong> {{ wordOfTheDay.pronunciation }}</p>
         <p class="origin"><strong>🌍 Origin:</strong> {{ wordOfTheDay.origin }}</p>
-        <p class="example"><strong>📜 Exemplum I:</strong><br/> {{ wordOfTheDay.example0 }}, <br/> {{ wordOfTheDay.example0_latin }}</p>
-        <p class="example"><strong>📜 Exemplum II:</strong><br/> {{ wordOfTheDay.example1 }},<br> {{ wordOfTheDay.example1_latin }}</p>
-        <p class="example"><strong>📜 Exemplum III:</strong><br/> {{ wordOfTheDay.example2 }},<br/> {{ wordOfTheDay.example2_latin }}</p>
+        <p class="example"><strong>📜 Exemplum I:</strong><br/> {{ wordOfTheDay.example0_latin }}, <br/><i>{{ wordOfTheDay.example0 }}</i></p>
+        <p class="example"><strong>📜 Exemplum II:</strong><br/> {{ wordOfTheDay.example1_latin }},<br/><i>{{ wordOfTheDay.example1 }}</i></p>
+        <p class="example"><strong>📜 Exemplum III:</strong><br/> {{ wordOfTheDay.example2_latin }},<br/><i>{{ wordOfTheDay.example2 }}</i></p>
         <p class="synonyms"><strong>🔄 Synonyms:</strong> {{ wordOfTheDay.synonyms.join(', ') }}</p>
         <p class="antonyms"><strong>🔁 Antonyms:</strong> {{ wordOfTheDay.antonyms.join(', ') }}</p>
       </div>
