@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import {AsyncPipe} from "@angular/common";
 import {CapitalizePipe} from "../../pipes/capitalize.pipe";
 import {RouterLink} from "@angular/router";
+import {ROUTES_NAMES} from "../../app-routing.module";
 
 @Component({
   selector: 'app-favorites',
@@ -24,5 +25,7 @@ export class FavoritesComponent {
   public favorites$: Observable<WordOfTheDayFavorite[]> = this.store.select(selectFavorites);
 
   public title = 'Favoriti';
+
+  public ROUTES = ROUTES_NAMES
 
 }

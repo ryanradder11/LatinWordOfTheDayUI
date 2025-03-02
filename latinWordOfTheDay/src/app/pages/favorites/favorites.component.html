@@ -11,7 +11,7 @@
     <div class="scroll">
       <ul>
         @for ( favorite of favorites$  | async; track favorite) {
-          <li class="favorite cursor-pointer" [routerLink]="['/home', favorite.id]">
+          <li class="favorite cursor-pointer" [routerLink]="['/' + ROUTES.HOME, favorite.id]">
             <span class="fav-id">#{{favorite.id}}</span>
             <span class="fav-word">{{favorite.word | capitalize}}</span>
           </li>
