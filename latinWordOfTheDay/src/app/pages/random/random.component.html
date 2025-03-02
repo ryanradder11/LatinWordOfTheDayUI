@@ -1,0 +1,16 @@
+<div class="container">
+
+  <h1 class="title text-center mt-2 p-2">{{ title }}</h1>
+  <div class="text-center">
+    <button class="timer-button ancient-latin" (click)="toggleTimer()">{{ (timerActive$ | async) ? 'Desine Tempus' : 'Incipe Tempus' }}</button>
+  </div>
+
+  @if (wordOfTheDay$ | async) {
+    @let wordOfTheDay = wordOfTheDay$ | async;
+    @if (wordOfTheDay)  {
+      <app-scroll [wordOfTheDay]="wordOfTheDay"></app-scroll>
+    }
+  } @else {
+    <p class="loading-message">📜 Verba inveniuntur... (Loading...)</p>
+  }
+</div>

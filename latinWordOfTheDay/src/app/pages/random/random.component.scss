@@ -1,0 +1,15 @@
+.timer-button.ancient-latin {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.2em;
+  background-color: #f4f4f4;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.timer-button.ancient-latin:hover {
+  background-color: #e0e0e0;
+  color: #333;
+}
