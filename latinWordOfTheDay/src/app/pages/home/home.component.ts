@@ -3,7 +3,7 @@ import {map, Observable} from "rxjs";
 import {ScrollComponent} from "../../components/scroll/scroll.component";
 import {AsyncPipe} from "@angular/common";
 import {Store} from "@ngrx/store";
-import {loadWordOfTheDay, loadWordOfTheDayByFavorite} from "../../store/word-of-the-day.actions";
+import {loadWordOfTheDay, loadWordOfTheDayByFavorite, stopTimer} from "../../store/word-of-the-day.actions";
 import {selectWordOfTheDay} from "../../store/word-of-the-day.selectors";
 import {WordOfTheDay} from "../../store/word-of-the-day.state";
 import {ActivatedRoute} from "@angular/router";
@@ -28,6 +28,8 @@ export class HomeComponent {
   public title = 'Verbum Diei';
 
   constructor() {
+
+    this.store.dispatch(stopTimer());
 
     this.route.paramMap.subscribe(params => {
       console.log(params.get('id'));

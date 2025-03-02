@@ -18,6 +18,8 @@ export const wordOfTheDayReducer = createReducer(
 
   on(JokeActions.toggleTimer, (state) => ({ ...state, timerActive: !state.timerActive })),
 
+  on(JokeActions.stopTimer, (state) => ({ ...state, timerActive: false })),
+
   on(JokeActions.toggleFavorite, (state, { id }) => {
     debugger;
     console.log('toggleFavorite: ' + id);

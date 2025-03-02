@@ -51,13 +51,18 @@ export class WordOfTheDayEffects {
   timerEffect$ = createEffect(() =>
     this.actions$.pipe(
       ofType(WordActions.toggleTimer),
-      switchMap(() =>
-        timer(0, 5000).pipe(
+      switchMap((action) =>
+        timer(0, action.time).pipe(
           mergeMap(() => this.wordOfTheDayService.getWordRandom()),
           map(wordOfTheDay => WordActions.addWordOfTheDay({ wordOfTheDay: wordOfTheDay })),
-          takeUntil(this.actions$.pipe(ofType(WordActions.toggleTimer)))
+          takeUntil(
+            this.actions$.pipe(
+              ofType(WordActions.toggleTimer, WordActions.stopTimer)
+            )
+          )
         )
       )
     )
   );
+
 }

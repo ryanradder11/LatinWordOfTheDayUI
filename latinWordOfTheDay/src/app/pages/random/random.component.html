@@ -1,8 +1,15 @@
 <div class="container">
 
   <h1 class="title text-center mt-2 p-2">{{ title }}</h1>
-  <div class="text-center">
-    <button class="timer-button ancient-latin" (click)="toggleTimer()">{{ (timerActive$ | async) ? 'Desine Tempus' : 'Incipe Tempus' }}</button>
+  <div class="text-center mb-3 mt-3">
+    @if (timerActive$ | async) {
+      <p class="timer-message">🕰️ Tempus fugit...{{time}}</p>
+      <button class="timer-button" (click)="stopTimer()">Stop Timer</button>
+    } @else {
+      <button class="timer-button ancient-latin" (click)="toggleTimer(5000)">5 Seconds</button>
+      <button class="timer-button ancient-latin" (click)="toggleTimer(10000)">10 Seconds</button>
+      <button class="timer-button ancient-latin" (click)="toggleTimer(30000)">30 Seconds</button>
+    }
   </div>
 
   @if (wordOfTheDay$ | async) {
