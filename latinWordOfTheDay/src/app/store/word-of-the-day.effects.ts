@@ -9,13 +9,25 @@ import {WordOfTheDayService} from "../services/word-of-the-day.service";
 export class WordOfTheDayEffects {
   constructor(private actions$: Actions, private wordOfTheDayService: WordOfTheDayService) {}
 
+  loadWordTheDayByRandom$ = createEffect(() =>
+
+    this.actions$.pipe(
+      ofType(WordActions.loadWordOfTheDayByRandom),
+      mergeMap((action) =>
+        this.wordOfTheDayService.getWordRandom().pipe(
+          map(wordOfTheDay => WordActions.wordOfTheDayLoaded({ wordOfTheDay: wordOfTheDay })),
+          catchError(() => of({ type: '[WordOfTheDay] Load Failed' }))
+        )
+      )
+    )
+  );
 
   loadWordTheDayByFavorite$ = createEffect(() =>
 
     this.actions$.pipe(
       ofType(WordActions.loadWordOfTheDayByFavorite),
       mergeMap((action) =>
-        this.wordOfTheDayService.getWordOfTheDay(action.favoriteId).pipe(
+        this.wordOfTheDayService.getWordById(action.favoriteId).pipe(
           map(wordOfTheDay => WordActions.wordOfTheDayLoaded({ wordOfTheDay: wordOfTheDay })),
           catchError(() => of({ type: '[WordOfTheDay] Load Failed' }))
         )
@@ -28,7 +40,7 @@ export class WordOfTheDayEffects {
     this.actions$.pipe(
       ofType(WordActions.loadWordOfTheDay),
       mergeMap(() =>
-        this.wordOfTheDayService.getWordOfTheDay().pipe(
+        this.wordOfTheDayService.getWordDaily().pipe(
           map(wordOfTheDay => WordActions.wordOfTheDayLoaded({ wordOfTheDay: wordOfTheDay })),
           catchError(() => of({ type: '[WordOfTheDay] Load Failed' }))
         )
@@ -41,7 +53,7 @@ export class WordOfTheDayEffects {
       ofType(WordActions.toggleTimer),
       switchMap(() =>
         timer(0, 5000).pipe(
-          mergeMap(() => this.wordOfTheDayService.getWordOfTheDay()),
+          mergeMap(() => this.wordOfTheDayService.getWordRandom()),
           map(wordOfTheDay => WordActions.addWordOfTheDay({ wordOfTheDay: wordOfTheDay })),
           takeUntil(this.actions$.pipe(ofType(WordActions.toggleTimer)))
         )

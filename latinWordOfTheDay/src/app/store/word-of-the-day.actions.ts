@@ -8,3 +8,5 @@ export const toggleTimer = createAction('[WordOfTheDay] Toggle Timer');
 export const toggleFavorite = createAction('[WordOfTheDay] Toggle Favorite', props<{ id: string }>());
 export const removeFavorite = createAction('[WordOfTheDay] Remove Favorite', props<{ id: string }>());
 export const loadWordOfTheDayByFavorite = createAction('[WordOfTheDay] Load WordOfTheDay By Favorite', props<{ favoriteId: string }>());
+
+export const loadWordOfTheDayByRandom = createAction('[WordOfTheDay] Load WordOfTheDay By random');

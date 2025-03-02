@@ -26,6 +26,11 @@ export class AppComponent implements OnInit {
         routerLink: `/${ROUTES_NAMES.HOME}`
       },
       {
+        label: 'Verbum Casuale',
+        icon: 'pi pi-question',
+        routerLink: `/${ROUTES_NAMES.RANDOM}`
+      },
+      {
         label: 'Favoriti',
         icon: 'pi pi-star',
         routerLink: `/${ROUTES_NAMES.FAVORITES}`,
