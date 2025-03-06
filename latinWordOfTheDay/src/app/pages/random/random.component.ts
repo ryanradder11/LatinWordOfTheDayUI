@@ -1,6 +1,6 @@
 import { Component, NgZone, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map, Observable } from 'rxjs';
+import {map, Observable, tap} from 'rxjs';
 import { WordOfTheDay } from '../../store/word-of-the-day.state';
 import { loadWordOfTheDayByRandom, stopTimer, toggleTimer } from '../../store/word-of-the-day.actions';
 import { selectTimerActive, selectWordOfTheDay } from '../../store/word-of-the-day.selectors';
@@ -29,7 +29,12 @@ export class RandomComponent {
 
   constructor() {
     this.store.dispatch(loadWordOfTheDayByRandom());
-    this.wordOfTheDay$ = this.store.select(selectWordOfTheDay).pipe(map((wordOfTheDay: WordOfTheDay[]) => wordOfTheDay[0]));
+    this.wordOfTheDay$ = this.store.select(selectWordOfTheDay).pipe(
+      map((wordOfTheDay: WordOfTheDay[]) => wordOfTheDay[0]),
+      tap(() => {
+        this.stopCountdown();
+        this.startCountdown();
+      }));
   }
 
   public toggleTimer(time: number) {
@@ -52,7 +57,6 @@ export class RandomComponent {
           this.ngZone.run(() => {}); // Trigger change detection manually if needed
         } else {
           this.stopCountdown();
-          this.startCountdown();
         }
       }, 100);
     });

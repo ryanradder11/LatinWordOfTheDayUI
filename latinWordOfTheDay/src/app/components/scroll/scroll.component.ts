@@ -19,4 +19,16 @@ export class ScrollComponent {
   public toggleFavorite() {
     this.store.dispatch(toggleFavorite({ id: this.wordOfTheDay.id }));
   }
+
+  public speak() {
+    // Create a SpeechSynthesisUtterance
+    const utterance = new SpeechSynthesisUtterance(this.wordOfTheDay.pronunciation);
+
+    // Select a voice
+    const voices = speechSynthesis.getVoices();
+    utterance.voice = voices[1]; // Choose a specific voice
+
+    // Speak the text
+    speechSynthesis.speak(utterance);
+  }
 }
