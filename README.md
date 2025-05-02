@@ -1,39 +1,29 @@
-# 📖 Latin Word of the Day – Back-End
+# 🏛️ Latin Word of the Day — Front-End (Angular 19)
 
-A minimalist API delivering a fresh Latin word each day — complete with definitions, usage examples, and grammatical insights.
-
----
-
-## ✨ Overview
-
-This back-end service provides a daily Latin word through a RESTful API. Ideal for educational apps, daily newsletters, or anyone looking to add a touch of ancient Rome to their workflow.
+An elegant Angular 19 front-end that fetches and displays a new Latin word every day. Designed with simplicity, clarity, and classical aesthetics in mind.
 
 ---
 
-## 🔧 Features
+## 🧭 Overview
 
-- 📅 **Daily Word Delivery** – Get a new Latin word every day
-- 🧠 **Includes Meaning & Grammar** – Definition, part of speech, example usage
-- 📦 **REST API** – Simple endpoints for easy integration
-- 🧪 **Tested & Reliable** – Unit/integration tested
-- 🕒 **Optional Scheduling** – Pre-load and cache daily words
+This application serves as the user interface for the *Latin Word of the Day* API. It retrieves and presents a daily Latin word along with its meaning, part of speech, and example usage.
 
 ---
 
-## 🛠 Tech Stack
+## 🧰 Tech Stack
 
-- **Node.js** + **Express**
-- **MongoDB** / **PostgreSQL** *(your choice)*
-- **TypeScript** *(optional)*
-- **Docker** *(optional for deployment)*
+- ⚙️ **Angular 19**
+- 🎨 **SCSS / TailwindCSS** (optional styling choice)
+- 🔁 **RxJS** for reactive data handling
+- 🌐 **HTTPClient** for API calls
+- ✅ **Jasmine/Karma** for unit testing
+- 🚀 **Angular CLI** for streamlined dev experience
 
 ---
 
-## 🚀 Getting Started
-
-### 1. Clone & Install
+## 🔧 Setup & Installation
 
 ```bash
-git clone https://github.com/yourusername/latin-word-of-the-day-be.git
-cd latin-word-of-the-day-be
+git clone https://github.com/yourusername/latin-word-of-the-day-fe.git
+cd latin-word-of-the-day-fe
 npm install
