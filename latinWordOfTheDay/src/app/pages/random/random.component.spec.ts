@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { RandomComponent } from './random.component';
 
@@ -8,7 +10,8 @@ describe('RandomComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RandomComponent]
+      imports: [RandomComponent, RouterTestingModule],
+      providers: [provideMockStore()]
     })
     .compileComponents();
 
