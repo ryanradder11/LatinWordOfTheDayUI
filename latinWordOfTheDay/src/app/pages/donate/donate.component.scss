@@ -6,3 +6,33 @@
 .wide-max{
   max-width: max-content;
 }
+
+.crypto-section {
+  margin-top: 20px;
+  border-top: 1px solid #d4c9a8;
+  padding-top: 10px;
+
+  summary {
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: #999;
+    &:hover { color: #666; }
+  }
+}
+
+.crypto-addresses {
+  margin-top: 8px;
+}
+
+.crypto-label {
+  font-size: 0.75rem;
+  margin-top: 8px;
+  color: #aaa;
+}
+
+.crypto-addr {
+  font-size: 0.65rem;
+  font-family: monospace;
+  color: #bbb;
+  word-break: break-all;
+}
