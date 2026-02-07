@@ -74,6 +74,24 @@ This builds the Angular app in a multi-stage Dockerfile (Node 20 Alpine → Apac
 
 The backend's `compose.yaml` references the frontend via `FE_BUILD_CONTEXT` (set in `.env` to `../LatinWordOfTheDayUI/latinWordOfTheDay`).
 
+### Generating new words
+
+New words and images are generated using the [latin-word-generator](https://github.com/ryanradder11/latin-word-generator) script. The workflow runs locally against the backend API, then deploys to production:
+
+```bash
+# 1. Start the local backend
+cd ../latinWordOfTheDayBe && npm run dev
+
+# 2. Generate words (in the generator repo)
+cd ../generate-words
+python generate_words.py generate --count 10
+
+# 3. Deploy to production (copies images + uploads new words)
+python generate_words.py deploy
+```
+
+See the [generator README](https://github.com/ryanradder11/latin-word-generator#readme) for full details on image sources and options.
+
 ### Production URL
 
 https://latinwordoftheday.com
