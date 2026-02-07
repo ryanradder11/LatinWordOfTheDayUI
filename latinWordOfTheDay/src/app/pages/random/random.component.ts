@@ -44,7 +44,7 @@ export class RandomComponent {
       map((wordOfTheDay: WordOfTheDay[]) => wordOfTheDay[0]),
       filter(w => !!w),
       tap((word) => {
-        this.location.replaceState(`/casuale/${word.id}`);
+        this.location.replaceState(`/casuale/${word.id}/${word.word}`);
         this.stopCountdown();
         this.startCountdown();
       }));
