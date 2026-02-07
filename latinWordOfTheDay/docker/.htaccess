@@ -1,0 +1,22 @@
+RewriteEngine On
+RewriteBase /
+
+# Block requests to wp-includes/wlwmanifest.xml
+RewriteCond %{REQUEST_URI} ^/.*wp-includes/wlwmanifest\.xml$ [NC]
+RewriteRule .* - [F,L]
+
+# Block requests to other common WordPress paths
+RewriteCond %{REQUEST_URI} ^/.*wp-includes/.*$ [NC]
+RewriteRule .* - [F,L]
+
+RewriteCond %{REQUEST_URI} ^/.*wp-content/.*$ [NC]
+RewriteRule .* - [F,L]
+
+RewriteCond %{REQUEST_URI} ^/.*wp-admin/.*$ [NC]
+RewriteRule .* - [F,L]
+
+RewriteRule ^test\.html$ /index.html [L]
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
