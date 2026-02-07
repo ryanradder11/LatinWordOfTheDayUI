@@ -20,6 +20,7 @@ export enum ROUTES_NAMES {
    {path: '', redirectTo: ROUTES_NAMES.HOME, pathMatch: 'full'},
    { path: `${ROUTES_NAMES.HOME}/:id`, component: HomeComponent },
    { path: ROUTES_NAMES.HOME, component: HomeComponent },
+   { path: `${ROUTES_NAMES.RANDOM}/:id`, component: RandomComponent },
    { path: ROUTES_NAMES.RANDOM, component: RandomComponent },
    { path: ROUTES_NAMES.FAVORITES, component: FavoritesComponent },
    { path: ROUTES_NAMES.ABOUT, component: AboutComponent },
