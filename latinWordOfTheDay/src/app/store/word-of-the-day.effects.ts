@@ -27,7 +27,7 @@ export class WordOfTheDayEffects {
     this.actions$.pipe(
       ofType(WordActions.loadWordOfTheDayByFavorite),
       mergeMap((action) =>
-        this.wordOfTheDayService.getWordById(action.favoriteId).pipe(
+        this.wordOfTheDayService.getWordById(action.favoriteId, action.word).pipe(
           map(wordOfTheDay => WordActions.wordOfTheDayLoaded({ wordOfTheDay: wordOfTheDay })),
           catchError(() => of({ type: '[WordOfTheDay] Load Failed' }))
         )
