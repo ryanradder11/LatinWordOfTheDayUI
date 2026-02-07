@@ -21,14 +21,16 @@ export class ScrollComponent {
   }
 
   public speak() {
-    // Create a SpeechSynthesisUtterance
-    const utterance = new SpeechSynthesisUtterance(this.wordOfTheDay.pronunciation);
+    const utterance = new SpeechSynthesisUtterance(this.wordOfTheDay.word);
+    utterance.lang = 'la';
 
-    // Select a voice
     const voices = speechSynthesis.getVoices();
-    utterance.voice = voices[1]; // Choose a specific voice
+    const italianVoice = voices.find(v => v.lang.startsWith('it'));
+    if (italianVoice) {
+      utterance.voice = italianVoice;
+    }
 
-    // Speak the text
+    utterance.rate = 0.8;
     speechSynthesis.speak(utterance);
   }
 
