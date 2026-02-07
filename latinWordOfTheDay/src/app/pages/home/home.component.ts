@@ -6,13 +6,14 @@ import {Store} from "@ngrx/store";
 import {loadWordOfTheDay, loadWordOfTheDayByFavorite, stopTimer} from "../../store/word-of-the-day.actions";
 import {selectWordOfTheDay} from "../../store/word-of-the-day.selectors";
 import {WordOfTheDay} from "../../store/word-of-the-day.state";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-home',
   imports: [
     ScrollComponent,
-    AsyncPipe
+    AsyncPipe,
+    RouterLink
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
