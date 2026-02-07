@@ -69,3 +69,174 @@
   font-style: italic;
   color: #8b4513;
 }
+
+// ============================================
+// Corinthian Pillar Layout
+// ============================================
+
+.pillared-content {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 80px;
+  min-height: 400px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 60px;
+    pointer-events: none;
+    z-index: 1;
+
+    background:
+      // --- CAPITAL: Abacus (top slab) ---
+      linear-gradient(
+        to bottom,
+        #b8860b 0px,
+        #d4a843 2px,
+        #c49530 16px,
+        #8b6914 18px,
+        transparent 18px
+      ) center top / 68px 18px no-repeat,
+
+      // --- CAPITAL: Volute left ---
+      radial-gradient(
+        circle 5px at center,
+        #b8860b 0%,
+        #8b6914 50%,
+        transparent 70%
+      ) 4px 20px / 14px 14px no-repeat,
+
+      // --- CAPITAL: Volute right ---
+      radial-gradient(
+        circle 5px at center,
+        #b8860b 0%,
+        #8b6914 50%,
+        transparent 70%
+      ) 42px 20px / 14px 14px no-repeat,
+
+      // --- CAPITAL: Bell/echinus shape ---
+      radial-gradient(
+        ellipse 34px 30px at center top,
+        #d4c9a8 0%,
+        #c4b896 65%,
+        transparent 66%
+      ) center 18px / 68px 35px no-repeat,
+
+      // --- CAPITAL: Central acanthus leaf ---
+      radial-gradient(
+        ellipse 10px 16px at center,
+        rgba(139, 0, 0, 0.12) 0%,
+        rgba(184, 134, 11, 0.08) 60%,
+        transparent 100%
+      ) center 30px / 24px 20px no-repeat,
+
+      // --- CAPITAL: Left acanthus ---
+      radial-gradient(
+        ellipse 8px 12px at center,
+        rgba(139, 0, 0, 0.1) 0%,
+        transparent 80%
+      ) 8px 34px / 18px 16px no-repeat,
+
+      // --- CAPITAL: Right acanthus ---
+      radial-gradient(
+        ellipse 8px 12px at center,
+        rgba(139, 0, 0, 0.1) 0%,
+        transparent 80%
+      ) 34px 34px / 18px 16px no-repeat,
+
+      // --- CAPITAL: Necking ring ---
+      linear-gradient(
+        to bottom,
+        transparent 0px,
+        #a89868 0px,
+        #c4b896 2px,
+        #a89868 4px,
+        transparent 4px
+      ) center 53px / 60px 4px no-repeat,
+
+      // --- BASE: Scotia (concave ring) ---
+      radial-gradient(
+        ellipse 26px 5px at center center,
+        #a89868 0%,
+        #c4b896 70%,
+        #ddd4be 100%
+      ) center calc(100% - 28px) / 56px 10px no-repeat,
+
+      // --- BASE: Upper torus (convex ring) ---
+      radial-gradient(
+        ellipse 30px 6px at center center,
+        #ddd4be 0%,
+        #c4b896 60%,
+        #a89868 100%
+      ) center calc(100% - 15px) / 64px 14px no-repeat,
+
+      // --- BASE: Plinth (rectangular bottom slab) ---
+      linear-gradient(
+        to top,
+        #8b6914 0px,
+        #c49530 2px,
+        #d4a843 12px,
+        #c49530 14px,
+        #8b6914 15px,
+        transparent 15px
+      ) center bottom / 68px 15px no-repeat,
+
+      // --- SHAFT: Fluted column ---
+      repeating-linear-gradient(
+        to right,
+        #c4b896 0px,
+        #ddd4be 2px,
+        #d4c9a8 5px,
+        #ddd4be 8px,
+        #c4b896 10px
+      ) center 57px / 60px calc(100% - 57px - 43px) no-repeat,
+
+      // --- SHAFT: Entasis overlay (curvature illusion) ---
+      linear-gradient(
+        to right,
+        rgba(100, 80, 40, 0.08) 0%,
+        transparent 20%,
+        transparent 80%,
+        rgba(100, 80, 40, 0.08) 100%
+      ) center 57px / 60px calc(100% - 57px - 43px) no-repeat;
+
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.15));
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+}
+
+// Responsive: scale down on tablets
+@media (max-width: 900px) {
+  .pillared-content {
+    padding: 0 60px;
+
+    &::before,
+    &::after {
+      width: 40px;
+    }
+  }
+}
+
+// Responsive: hide pillars on mobile
+@media (max-width: 600px) {
+  .pillared-content {
+    padding: 0;
+    max-width: 100%;
+
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+}
