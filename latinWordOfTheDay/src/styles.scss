@@ -99,11 +99,32 @@ body {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   transition: all 0.2s ease-in-out;
+  position: relative;
+
+  .btn-latin, .btn-english {
+    transition: opacity 0.3s ease;
+  }
+
+  .btn-latin {
+    opacity: 1;
+  }
+
+  .btn-english {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+  }
 
   &:hover {
     background: linear-gradient(to bottom, #a00000, #6e0000);
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+    .btn-latin { opacity: 0; }
+    .btn-english { opacity: 1; }
   }
 
   &:active {
@@ -116,4 +137,39 @@ body {
   background: rgba(139, 0, 0, 0.15) !important;
   border-bottom: 3px solid #8b0000;
   color: #8b0000 !important;
+}
+
+// Menu item hover Latin → English transition
+.menu-item-hover {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+}
+
+.menu-label {
+  position: relative;
+
+  .menu-latin, .menu-english {
+    transition: opacity 0.3s ease;
+  }
+
+  .menu-latin {
+    opacity: 1;
+  }
+
+  .menu-english {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    white-space: nowrap;
+  }
+}
+
+.menu-item-hover:hover .menu-label {
+  .menu-latin { opacity: 0; }
+  .menu-english { opacity: 1; }
 }
