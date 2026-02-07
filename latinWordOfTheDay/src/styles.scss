@@ -151,9 +151,12 @@ body {
 
 .menu-label {
   position: relative;
+  display: inline-grid;
 
   .menu-latin, .menu-english {
+    grid-area: 1 / 1;
     transition: opacity 0.3s ease;
+    white-space: nowrap;
   }
 
   .menu-latin {
@@ -161,11 +164,7 @@ body {
   }
 
   .menu-english {
-    position: absolute;
-    left: 0;
-    top: 0;
     opacity: 0;
-    white-space: nowrap;
   }
 }
 
