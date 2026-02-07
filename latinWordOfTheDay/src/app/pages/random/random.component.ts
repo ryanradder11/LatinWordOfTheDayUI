@@ -1,11 +1,13 @@
 import { Component, NgZone, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {map, Observable, tap} from 'rxjs';
+import { filter, map, Observable, tap } from 'rxjs';
+import { Location } from '@angular/common';
 import { WordOfTheDay } from '../../store/word-of-the-day.state';
-import { loadWordOfTheDayByRandom, stopTimer, toggleTimer } from '../../store/word-of-the-day.actions';
+import { loadWordOfTheDayByRandom, loadWordOfTheDayByFavorite, stopTimer, toggleTimer } from '../../store/word-of-the-day.actions';
 import { selectTimerActive, selectWordOfTheDay } from '../../store/word-of-the-day.selectors';
 import { AsyncPipe } from '@angular/common';
 import { ScrollComponent } from '../../components/scroll/scroll.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-random',
@@ -19,6 +21,8 @@ import { ScrollComponent } from '../../components/scroll/scroll.component';
 export class RandomComponent {
   private store = inject(Store);
   private ngZone = inject(NgZone);
+  private location = inject(Location);
+  private route = inject(ActivatedRoute);
 
   public timerActive$: Observable<boolean> = this.store.select(selectTimerActive);
   public wordOfTheDay$: Observable<WordOfTheDay> = new Observable<WordOfTheDay>();
@@ -28,10 +32,19 @@ export class RandomComponent {
   private intervalId: any;
 
   constructor() {
-    this.store.dispatch(loadWordOfTheDayByRandom());
+    this.route.paramMap.subscribe(params => {
+      if (params.has('id')) {
+        this.store.dispatch(loadWordOfTheDayByFavorite({ favoriteId: params.get('id') ?? '' }));
+      } else {
+        this.store.dispatch(loadWordOfTheDayByRandom());
+      }
+    });
+
     this.wordOfTheDay$ = this.store.select(selectWordOfTheDay).pipe(
       map((wordOfTheDay: WordOfTheDay[]) => wordOfTheDay[0]),
-      tap(() => {
+      filter(w => !!w),
+      tap((word) => {
+        this.location.replaceState(`/casuale/${word.id}`);
         this.stopCountdown();
         this.startCountdown();
       }));
