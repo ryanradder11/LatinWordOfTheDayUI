@@ -62,6 +62,10 @@ export class RandomComponent {
     });
   }
 
+  public loadRandom() {
+    this.store.dispatch(loadWordOfTheDayByRandom());
+  }
+
   private stopCountdown() {
     if (this.intervalId) {
       clearInterval(this.intervalId);
