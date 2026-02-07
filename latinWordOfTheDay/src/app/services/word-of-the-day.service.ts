@@ -11,8 +11,11 @@ export class WordOfTheDayService {
 
   private http = inject(HttpClient);
 
-  public getWordById(id :string): Observable<WordOfTheDay[]> {
-    return this.http.get<WordOfTheDay[]>(`${environment.apiUrl}/items/${id}`).pipe(map((wordOfTheDayLoaded: WordOfTheDay[]) => {
+  public getWordById(id: string, word?: string): Observable<WordOfTheDay[]> {
+    const url = word
+      ? `${environment.apiUrl}/items/${id}/${word}`
+      : `${environment.apiUrl}/items/${id}`;
+    return this.http.get<WordOfTheDay[]>(url).pipe(map((wordOfTheDayLoaded: WordOfTheDay[]) => {
       wordOfTheDayLoaded[0].isFavorite = false;
       return wordOfTheDayLoaded;
     }));

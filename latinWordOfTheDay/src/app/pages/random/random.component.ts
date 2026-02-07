@@ -34,7 +34,10 @@ export class RandomComponent {
   constructor() {
     this.route.paramMap.subscribe(params => {
       if (params.has('id')) {
-        this.store.dispatch(loadWordOfTheDayByFavorite({ favoriteId: params.get('id') ?? '' }));
+        this.store.dispatch(loadWordOfTheDayByFavorite({
+          favoriteId: params.get('id') ?? '',
+          word: params.get('word') ?? undefined
+        }));
       } else {
         this.store.dispatch(loadWordOfTheDayByRandom());
       }
