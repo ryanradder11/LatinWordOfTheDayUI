@@ -5,7 +5,7 @@
     @if (timerActive$ | async) {
       <p class="timer-message">🕰️ Tempus fugit...{{time}}</p>
       <button class="timer-button" (click)="stopTimer()">Stop Timer</button>
-    } @else {(
+    } @else {
       <button class="timer-button ancient-latin" (click)="toggleTimer(2000)">2 Seconds</button>
       <button class="timer-button ancient-latin" (click)="toggleTimer(5000)">5 Seconds</button>
       <button class="timer-button ancient-latin" (click)="toggleTimer(10000)">10 Seconds</button>
