@@ -1,0 +1,46 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    padding: 2rem;
+}
+
+:host ::ng-deep .p-card {
+    width: 400px;
+    border: 3px solid #b8860b;
+    border-radius: 15px;
+    background: #f4f1e9;
+}
+
+.login-title {
+    text-align: center;
+    color: #8b0000;
+    font-family: 'Garamond', 'Times New Roman', serif;
+    font-size: 2rem;
+    margin: 1rem 0 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.login-subtitle {
+    text-align: center;
+    color: #8b4513;
+    font-style: italic;
+    margin: 0.25rem 0 0;
+}
+
+.error-message {
+    color: #8b0000;
+    background: #fde8e8;
+    padding: 0.75rem;
+    border-radius: 6px;
+    text-align: center;
+    border: 1px solid #e0b4b4;
+}
+
+label {
+    color: #5c4033;
+    font-weight: 600;
+    font-family: 'Garamond', 'Times New Roman', serif;
+}

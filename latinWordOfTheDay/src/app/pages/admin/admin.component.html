@@ -1,0 +1,276 @@
+<p-toast />
+<p-confirmDialog />
+
+<div class="admin-container">
+    <h1 class="title">Praefectus</h1>
+
+    <p-toolbar styleClass="admin-toolbar mb-3">
+        <ng-template #start>
+            <p-button
+                label="New Word"
+                icon="pi pi-plus"
+                severity="success"
+                (onClick)="openNew()"
+                class="mr-2"
+            />
+        </ng-template>
+        <ng-template #end>
+            <span class="word-count mr-3">{{ words().length }} words</span>
+            <p-button
+                label="Logout"
+                icon="pi pi-sign-out"
+                severity="secondary"
+                (onClick)="logout()"
+            />
+        </ng-template>
+    </p-toolbar>
+
+    <p-table
+        #dt
+        [value]="words()"
+        [paginator]="true"
+        [rows]="15"
+        [rowsPerPageOptions]="[15, 30, 50]"
+        [globalFilterFields]="['word', 'definition', 'origin']"
+        [loading]="loading"
+        [rowHover]="true"
+        [sortField]="'word'"
+        [sortOrder]="1"
+        styleClass="p-datatable-sm"
+    >
+        <ng-template #caption>
+            <div class="flex align-items-center justify-content-between">
+                <span class="p-text-secondary">Manage Latin Words</span>
+                <p-iconfield>
+                    <p-inputicon styleClass="pi pi-search" />
+                    <input
+                        pInputText
+                        type="text"
+                        (input)="onGlobalFilter(dt, $event)"
+                        placeholder="Search words..."
+                    />
+                </p-iconfield>
+            </div>
+        </ng-template>
+
+        <ng-template #header>
+            <tr>
+                <th pSortableColumn="id" style="width: 5rem">
+                    ID <p-sortIcon field="id" />
+                </th>
+                <th style="width: 4rem">Image</th>
+                <th pSortableColumn="word" style="width: 10rem">
+                    Word <p-sortIcon field="word" />
+                </th>
+                <th>Definition</th>
+                <th style="width: 8rem">Actions</th>
+            </tr>
+        </ng-template>
+
+        <ng-template #body let-word>
+            <tr>
+                <td>{{ word.id }}</td>
+                <td>
+                    @if (word.image) {
+                        <img
+                            [src]="'/img/' + word.image"
+                            [alt]="word.word"
+                            width="40"
+                            height="40"
+                            style="object-fit: cover; border-radius: 4px"
+                        />
+                    }
+                </td>
+                <td>
+                    <strong>{{ word.word }}</strong>
+                </td>
+                <td class="definition-cell">
+                    {{ word.definition | slice : 0 : 100
+                    }}{{ word.definition?.length > 100 ? '...' : '' }}
+                </td>
+                <td>
+                    <p-button
+                        icon="pi pi-pencil"
+                        [rounded]="true"
+                        [text]="true"
+                        severity="info"
+                        (onClick)="editWord(word)"
+                        class="mr-1"
+                    />
+                    <p-button
+                        icon="pi pi-trash"
+                        [rounded]="true"
+                        [text]="true"
+                        severity="danger"
+                        (onClick)="confirmDelete(word)"
+                    />
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template #emptymessage>
+            <tr>
+                <td colspan="5" class="text-center p-4">
+                    No words found.
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<!-- Add/Edit Dialog -->
+<p-dialog
+    [header]="isNew ? 'New Word' : 'Edit: ' + editingWord.word"
+    [(visible)]="wordDialog"
+    [modal]="true"
+    [style]="{ width: '700px', maxHeight: '90vh' }"
+    [contentStyle]="{ overflow: 'auto' }"
+>
+    <div class="flex flex-column gap-3 mt-2">
+        <div class="flex gap-3">
+            <div class="flex flex-column gap-2 flex-1">
+                <label for="word"><strong>Word</strong></label>
+                <input
+                    pInputText
+                    id="word"
+                    [(ngModel)]="editingWord.word"
+                    placeholder="e.g. Veritas"
+                />
+            </div>
+            <div class="flex flex-column gap-2 flex-1">
+                <label for="pronunciation"
+                    ><strong>Pronunciation</strong></label
+                >
+                <input
+                    pInputText
+                    id="pronunciation"
+                    [(ngModel)]="editingWord.pronunciation"
+                    placeholder="e.g. VEH-ri-tahs"
+                />
+            </div>
+        </div>
+
+        <div class="flex flex-column gap-2">
+            <label for="definition"><strong>Definition</strong></label>
+            <textarea
+                pTextarea
+                id="definition"
+                [(ngModel)]="editingWord.definition"
+                rows="2"
+                placeholder="e.g. Veritas means truth..."
+            ></textarea>
+        </div>
+
+        <div class="flex flex-column gap-2">
+            <label for="origin"><strong>Origin</strong></label>
+            <input
+                pInputText
+                id="origin"
+                [(ngModel)]="editingWord.origin"
+                placeholder="e.g. From Latin verus meaning true"
+            />
+        </div>
+
+        <hr class="my-1" />
+
+        <div class="flex flex-column gap-2">
+            <label><strong>Example I</strong></label>
+            <input
+                pInputText
+                [(ngModel)]="editingWord.example0"
+                placeholder="English sentence"
+            />
+            <input
+                pInputText
+                [(ngModel)]="editingWord.example0_latin"
+                placeholder="Latin translation"
+            />
+        </div>
+
+        <div class="flex flex-column gap-2">
+            <label><strong>Example II</strong></label>
+            <input
+                pInputText
+                [(ngModel)]="editingWord.example1"
+                placeholder="English sentence"
+            />
+            <input
+                pInputText
+                [(ngModel)]="editingWord.example1_latin"
+                placeholder="Latin translation"
+            />
+        </div>
+
+        <div class="flex flex-column gap-2">
+            <label><strong>Example III</strong></label>
+            <input
+                pInputText
+                [(ngModel)]="editingWord.example2"
+                placeholder="English sentence"
+            />
+            <input
+                pInputText
+                [(ngModel)]="editingWord.example2_latin"
+                placeholder="Latin translation"
+            />
+        </div>
+
+        <hr class="my-1" />
+
+        <div class="flex gap-3">
+            <div class="flex flex-column gap-2 flex-1">
+                <label for="synonyms"><strong>Synonyms</strong></label>
+                <input
+                    pInputText
+                    id="synonyms"
+                    [(ngModel)]="synonymsText"
+                    placeholder="e.g. Fides, Sinceritas"
+                />
+            </div>
+            <div class="flex flex-column gap-2 flex-1">
+                <label for="antonyms"><strong>Antonyms</strong></label>
+                <input
+                    pInputText
+                    id="antonyms"
+                    [(ngModel)]="antonymsText"
+                    placeholder="e.g. Mendacium, Falsitas"
+                />
+            </div>
+        </div>
+
+        <div class="flex flex-column gap-2">
+            <label for="image"><strong>Image filename</strong></label>
+            <input
+                pInputText
+                id="image"
+                [(ngModel)]="editingWord.image"
+                placeholder="e.g. veritas.jpg"
+            />
+            @if (editingWord.image) {
+                <img
+                    [src]="'/img/' + editingWord.image"
+                    [alt]="editingWord.word || 'preview'"
+                    style="
+                        max-width: 200px;
+                        border-radius: 8px;
+                        border: 2px solid #b8860b;
+                    "
+                />
+            }
+        </div>
+    </div>
+
+    <ng-template #footer>
+        <p-button
+            label="Cancel"
+            icon="pi pi-times"
+            severity="secondary"
+            (onClick)="wordDialog = false"
+        />
+        <p-button
+            label="Save"
+            icon="pi pi-check"
+            (onClick)="saveWord()"
+        />
+    </ng-template>
+</p-dialog>

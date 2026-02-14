@@ -1,0 +1,68 @@
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+}
+
+.title {
+    text-align: center;
+    color: #8b0000;
+    font-family: 'Garamond', 'Times New Roman', serif;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+}
+
+.word-count {
+    color: #8b4513;
+    font-style: italic;
+    font-family: 'Garamond', 'Times New Roman', serif;
+}
+
+.definition-cell {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+:host ::ng-deep {
+    .admin-toolbar {
+        border: 2px solid #b8860b;
+        border-radius: 10px;
+        background: #f4f1e9;
+    }
+
+    .p-datatable {
+        border: 2px solid #b8860b;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .p-datatable-header {
+        background: #f4f1e9;
+        border-bottom: 2px solid #b8860b;
+    }
+
+    .p-datatable-thead > tr > th {
+        background: #f9f6ef;
+        color: #8b0000;
+        font-family: 'Garamond', 'Times New Roman', serif;
+        font-weight: 700;
+    }
+
+    .p-dialog-header {
+        color: #8b0000;
+        font-family: 'Garamond', 'Times New Roman', serif;
+    }
+}
+
+label {
+    color: #5c4033;
+    font-family: 'Garamond', 'Times New Roman', serif;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #b8860b;
+    opacity: 0.4;
+}

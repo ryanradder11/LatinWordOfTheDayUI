@@ -1,0 +1,46 @@
+<div class="login-container">
+    <p-card>
+        <ng-template #header>
+            <h2 class="login-title">Aditus</h2>
+            <p class="login-subtitle">Admin Login</p>
+        </ng-template>
+
+        <div class="flex flex-column gap-3">
+            @if (errorMessage) {
+                <div class="error-message">{{ errorMessage }}</div>
+            }
+
+            <div class="flex flex-column gap-2">
+                <label for="username">Username</label>
+                <input
+                    pInputText
+                    id="username"
+                    [(ngModel)]="username"
+                    placeholder="Enter username"
+                />
+            </div>
+
+            <div class="flex flex-column gap-2">
+                <label for="password">Password</label>
+                <p-password
+                    id="password"
+                    [(ngModel)]="password"
+                    [feedback]="false"
+                    [toggleMask]="true"
+                    (keydown.enter)="login()"
+                    placeholder="Enter password"
+                    styleClass="w-full"
+                />
+            </div>
+
+            <p-button
+                label="Login"
+                icon="pi pi-sign-in"
+                (onClick)="login()"
+                [loading]="loading"
+                [disabled]="!username || !password"
+                styleClass="w-full"
+            />
+        </div>
+    </p-card>
+</div>

@@ -6,6 +6,9 @@ import {AboutComponent} from "./pages/about/about.component";
 import {WhyComponent} from "./pages/why/why.component";
 import {DonateComponent} from "./pages/donate/donate.component";
 import {RandomComponent} from "./pages/random/random.component";
+import {LoginComponent} from "./pages/login/login.component";
+import {AdminComponent} from "./pages/admin/admin.component";
+import {authGuard} from "./guards/auth.guard";
 
 export enum ROUTES_NAMES {
   HOME = 'domus',
@@ -13,7 +16,9 @@ export enum ROUTES_NAMES {
   FAVORITES = 'favorita',
   ABOUT = 'de',
   WHY = 'cur',
-  DONATE = 'donare'
+  DONATE = 'donare',
+  LOGIN = 'aditus',
+  ADMIN = 'praefectus'
 }
 
  const routes: Routes = [
@@ -27,6 +32,8 @@ export enum ROUTES_NAMES {
    { path: ROUTES_NAMES.ABOUT, component: AboutComponent },
    { path: ROUTES_NAMES.WHY, component: WhyComponent },
    { path: ROUTES_NAMES.DONATE, component: DonateComponent },
+   { path: ROUTES_NAMES.LOGIN, component: LoginComponent },
+   { path: ROUTES_NAMES.ADMIN, component: AdminComponent, canActivate: [authGuard] },
 ];
 
 @NgModule({

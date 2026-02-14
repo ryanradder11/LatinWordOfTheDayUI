@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {CommonModule} from '@angular/common';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authInterceptor } from './interceptors/auth.interceptor';
 import {Menubar} from "primeng/menubar";
 import {providePrimeNG} from "primeng/config";
 import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
@@ -29,7 +30,7 @@ import {WordOfTheDayEffects} from "./store/word-of-the-day.effects";
     EffectsModule.forRoot([WordOfTheDayEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: true }),
   ],
-  providers: [provideHttpClient(),  provideAnimationsAsync(),
+  providers: [provideHttpClient(withInterceptors([authInterceptor])),  provideAnimationsAsync(),
     providePrimeNG({
       theme: {
         preset: Material,

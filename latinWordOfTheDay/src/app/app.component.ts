@@ -66,6 +66,12 @@ export class AppComponent implements OnInit {
             icon: 'pi pi-bolt',
             routerLink: `/${ROUTES_NAMES.DONATE}`
           },
+          {
+            label: 'Aditus',
+            englishLabel: 'Admin',
+            icon: 'pi pi-lock',
+            routerLink: `/${ROUTES_NAMES.LOGIN}`
+          },
         ]
       }
     ]
