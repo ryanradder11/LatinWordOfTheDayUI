@@ -132,6 +132,32 @@ body {
   }
 }
 
+.date-display {
+  display: inline-grid;
+  cursor: default;
+  font-family: "Times New Roman", serif;
+  font-size: 1rem;
+  color: #8b0000;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  margin: 0.25rem 0 1rem;
+
+  .date-latin,
+  .date-english {
+    grid-area: 1 / 1;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .date-latin { opacity: 1; }
+  .date-english { opacity: 0; }
+
+  &:hover {
+    .date-latin { opacity: 0; }
+    .date-english { opacity: 1; }
+  }
+}
+
 // Active route highlight for PrimeNG menubar
 .p-menubar-item-link-active {
   background: rgba(139, 0, 0, 0.15) !important;

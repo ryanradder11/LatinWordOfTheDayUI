@@ -1,6 +1,10 @@
 <div class="container">
 
   <h1 class="title text-center mt-2 p-2">{{ title }}</h1>
+  <div class="date-display">
+    <span class="date-latin">{{ todayLatin }}</span>
+    <span class="date-english">{{ todayEnglish }}</span>
+  </div>
 
   @if (wordOfTheDay$ | async) {
     @let wordOfTheDay = wordOfTheDay$ | async;
