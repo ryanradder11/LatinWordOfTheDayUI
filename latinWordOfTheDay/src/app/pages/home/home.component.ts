@@ -7,6 +7,13 @@ import {loadWordOfTheDay, loadWordOfTheDayByFavorite, stopTimer} from "../../sto
 import {selectWordOfTheDay} from "../../store/word-of-the-day.selectors";
 import {WordOfTheDay} from "../../store/word-of-the-day.state";
 import {ActivatedRoute, RouterLink} from "@angular/router";
+import {RomanNumeralPipe} from "../../pipes/roman-numeral.pipe";
+
+const LATIN_MONTHS = [
+  'Ianuarius', 'Februarius', 'Martius', 'Aprilis',
+  'Maius', 'Iunius', 'Iulius', 'Augustus',
+  'September', 'October', 'November', 'December',
+];
 
 @Component({
   selector: 'app-home',
@@ -27,8 +34,18 @@ export class HomeComponent {
   public wordOfTheDay$: Observable<WordOfTheDay> = new Observable<WordOfTheDay>();
 
   public title = 'Verbum Diei';
+  public todayLatin: string;
+  public todayEnglish: string;
 
   constructor() {
+    const pipe = new RomanNumeralPipe();
+    const now = new Date();
+    const day = now.getDate();
+    const month = now.getMonth();
+    const year = now.getFullYear();
+    this.todayLatin = `Die ${pipe.transform(day)} · ${LATIN_MONTHS[month]} · ${pipe.transform(year)}`;
+    this.todayEnglish = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
 
     this.store.dispatch(stopTimer());
 
