@@ -1,21 +1,99 @@
-<div class="scroll">
-  <button class="favorite-button" (click)="toggleFavorite()">{{ wordOfTheDay.isFavorite ? '⭐' : '☆' }}</button>
-  <button class="speech-button" (click)="speak()">🔊</button>
-  <section class="word-section">
-    <div class="word-content">
-      <img src="{{ '/img/' + wordOfTheDay.image }}"
-           alt="{{ wordOfTheDay.word }}" class="word-image scroll-shadow" />
-      <div class="word-details">
-        <p class="word roman-font"><strong>📖 {{ wordOfTheDay.word | capitalize }}</strong></p>
-        <p class="definition"><strong>📚 Meaning:</strong> {{ wordOfTheDay.definition }}</p>
-        <p class="pronunciation"><strong>🔊 Pronunciation:</strong> {{ wordOfTheDay.pronunciation }}</p>
-        <p class="origin"><strong>🌍 Origin:</strong> {{ wordOfTheDay.origin }}</p>
-        <p class="example"><strong>📜 Exemplum I:</strong><br/> {{ wordOfTheDay.example0_latin }}, <br/><i>{{ wordOfTheDay.example0 }}</i></p>
-        <p class="example"><strong>📜 Exemplum II:</strong><br/> {{ wordOfTheDay.example1_latin }},<br/><i>{{ wordOfTheDay.example1 }}</i></p>
-        <p class="example"><strong>📜 Exemplum III:</strong><br/> {{ wordOfTheDay.example2_latin }},<br/><i>{{ wordOfTheDay.example2 }}</i></p>
-        <p class="synonyms"><strong>🔄 Synonyms:</strong> {{ wordOfTheDay.synonyms.join(', ') }}</p>
-        <p class="antonyms"><strong>🔁 Antonyms:</strong> {{ wordOfTheDay.antonyms.join(', ') }}</p>
-      </div>
+<article class="nc-article">
+
+  <!-- Hero medallion -->
+  <div class="nc-hero-frame">
+    <div class="nc-hero"
+         [style.background]="wordOfTheDay.image ? 'none' : 'radial-gradient(circle at 40% 30%, #d4a870 0%, #8a4a28 35%, #1a0e08 95%)'">
+      @if (wordOfTheDay.image) {
+        <img [src]="'/img/' + wordOfTheDay.image" [alt]="wordOfTheDay.word" class="nc-hero-img" />
+      }
+      <div class="nc-hero-grain"></div>
+      <div class="nc-hero-vignette"></div>
+      @if (!wordOfTheDay.image) {
+        <div class="nc-hero-mono">{{ wordOfTheDay.word.charAt(0) }}</div>
+      }
     </div>
-  </section>
-</div>
+    <div class="nc-hero-ring"></div>
+  </div>
+
+  <!-- Word title -->
+  <h1 class="nc-word"><em>{{ wordOfTheDay.word }}</em></h1>
+
+  <!-- Pronunciation + favorite -->
+  <div class="nc-pron-row">
+    <button class="nc-play" (click)="speak()" type="button" aria-label="Pronounce">
+      <svg width="11" height="11" viewBox="0 0 11 11">
+        <path d="M2 1.2v8.6l7-4.3z" fill="currentColor"/>
+      </svg>
+    </button>
+    <span class="nc-pron">/{{ wordOfTheDay.pronunciation }}/</span>
+    @if (playing) {
+      <span class="nc-wave">~ · ~ · ~</span>
+    }
+    <button class="nc-star" [class.nc-star-on]="wordOfTheDay.isFavorite" (click)="toggleFavorite()" type="button">
+      <svg width="13" height="13" viewBox="0 0 14 14">
+        <path d="M7 1.2l1.7 3.6 3.8.4-2.9 2.7.8 3.8L7 9.8l-3.4 1.9.8-3.8L1.5 5.2l3.8-.4z"
+              [attr.fill]="wordOfTheDay.isFavorite ? 'currentColor' : 'none'"
+              stroke="currentColor" stroke-width="1.1"/>
+      </svg>
+      <em>{{ wordOfTheDay.isFavorite ? 'in tuō libellō' : 'servā' }}</em>
+    </button>
+  </div>
+
+  <!-- Meaning with drop cap -->
+  <p class="nc-meaning">{{ wordOfTheDay.definition }}</p>
+
+  <!-- Gilt divider -->
+  <div class="nc-divider">
+    <span class="nc-divider-line"></span>
+    <span class="nc-divider-orn">❦</span>
+    <span class="nc-divider-line"></span>
+  </div>
+
+  <!-- Origin -->
+  <div class="nc-block">
+    <div class="nc-block-lbl">Orīgō</div>
+    <p class="nc-block-text">{{ wordOfTheDay.origin }}</p>
+  </div>
+
+  <!-- Examples -->
+  <div class="nc-block">
+    <div class="nc-block-lbl">Exempla</div>
+    <ol class="nc-ex-list">
+      @for (ex of examples; track $index) {
+        <li class="nc-ex">
+          <span class="nc-ex-mark">{{ ROMAN[$index] }}.</span>
+          <div>
+            <p class="nc-ex-la"><em>{{ ex.la }}</em></p>
+            <p class="nc-ex-en">{{ ex.en }}</p>
+          </div>
+        </li>
+      }
+    </ol>
+  </div>
+
+  <!-- Synonyms / Antonyms -->
+  <div class="nc-pair">
+    <div class="nc-block">
+      <div class="nc-block-lbl">Synōnyma</div>
+      <p class="nc-block-text">
+        @if (wordOfTheDay.synonyms.length) {
+          <em>{{ wordOfTheDay.synonyms.join(' · ') }}</em>
+        } @else {
+          <span class="nc-em-none">— none recorded —</span>
+        }
+      </p>
+    </div>
+    <div class="nc-block">
+      <div class="nc-block-lbl">Antōnyma</div>
+      <p class="nc-block-text">
+        @if (wordOfTheDay.antonyms.length) {
+          <em>{{ wordOfTheDay.antonyms.join(' · ') }}</em>
+        } @else {
+          <span class="nc-em-none">— none recorded —</span>
+        }
+      </p>
+    </div>
+  </div>
+
+</article>

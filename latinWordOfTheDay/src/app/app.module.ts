@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import {CommonModule} from '@angular/common';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './interceptors/auth.interceptor';
-import {Menubar} from "primeng/menubar";
 import {providePrimeNG} from "primeng/config";
 import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
 import Material from '@primeng/themes/material';
@@ -25,7 +24,6 @@ import {WordOfTheDayEffects} from "./store/word-of-the-day.effects";
     CommonModule,
     BrowserModule,
     AppRoutingModule,
-    Menubar,
     StoreModule.forRoot({wordOfTheDay: wordOfTheDayReducer}), // Provide mock store
     EffectsModule.forRoot([WordOfTheDayEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: true }),
