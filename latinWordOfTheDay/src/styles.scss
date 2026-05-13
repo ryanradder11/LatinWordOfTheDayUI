@@ -208,7 +208,7 @@ html, body {
 .nc-main {
   max-width: 580px;
   margin: 18px auto 40px;
-  padding: 50px 48px 56px;
+  padding: 32px 40px 40px;
   position: relative; z-index: 2;
 
   background:
@@ -258,8 +258,8 @@ html, body {
 /* ─── Section heading ────────────────────────────────────────────────────── */
 .nc-screen-hd {
   text-align: center;
-  margin-bottom: 36px;
-  padding-bottom: 24px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
   border-bottom: 0.5px solid var(--nc-gilt);
   position: relative;
 
@@ -324,7 +324,7 @@ html, body {
 .nc-controls-sep { color: var(--nc-gilt); margin: 0 6px; }
 
 .nc-prog {
-  margin: 0 auto 32px;
+  margin: 0 auto 16px;
   width: 220px; height: 1px;
   background: var(--nc-rule);
   overflow: hidden;
@@ -342,29 +342,29 @@ html, body {
   display: flex; flex-direction: column; align-items: center;
 }
 
-/* Hero medallion */
+/* Hero image */
 .nc-hero-frame {
   position: relative;
-  width: 220px; height: 220px;
-  margin-bottom: 28px;
+  width: 260px; height: 200px;
+  margin-bottom: 16px;
 }
 
 .nc-hero {
   position: absolute; inset: 0;
-  border-radius: 50%; overflow: hidden;
+  border-radius: 10px; overflow: hidden;
   box-shadow:
     0 0 0 1px rgba(0,0,0,0.4),
     0 0 0 2px var(--nc-frame),
     0 0 0 4px rgba(232,216,176,0.4),
     0 0 0 5px var(--nc-frame),
-    0 30px 50px -20px rgba(60,40,15,0.5),
-    0 0 50px -5px rgba(200,147,46,0.25);
+    0 20px 40px -10px rgba(60,40,15,0.5),
+    0 0 40px -5px rgba(200,147,46,0.2);
 }
 
 .nc-hero-img {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
-  object-fit: cover; border-radius: 50%;
+  object-fit: cover; border-radius: 10px;
 }
 
 .nc-hero-grain {
@@ -377,7 +377,7 @@ html, body {
 .nc-hero-vignette {
   position: absolute; inset: 0;
   box-shadow: inset 0 0 60px rgba(0,0,0,0.55);
-  border-radius: 50%;
+  border-radius: 10px;
   pointer-events: none;
 }
 
@@ -394,7 +394,7 @@ html, body {
 .nc-hero-ring {
   position: absolute; inset: -14px;
   border: 0.5px solid var(--nc-gilt);
-  border-radius: 50%; opacity: 0.35;
+  border-radius: 16px; opacity: 0.35;
 }
 
 /* Meta row */
@@ -415,7 +415,7 @@ html, body {
   font-size: 56px; font-weight: 400;
   letter-spacing: 0.05em; text-transform: uppercase;
   line-height: 1; text-align: center;
-  margin: 0 0 22px; color: var(--nc-ink);
+  margin: 0 0 12px; color: var(--nc-ink);
   text-shadow: 0 1px 0 rgba(255,245,210,0.5);
   transition: transform 0.2s ease-in-out;
   em { font-style: normal; font-weight: 500; }
@@ -425,7 +425,7 @@ html, body {
 /* Pronunciation row */
 .nc-pron-row {
   display: flex; gap: 12px; align-items: center;
-  margin-bottom: 32px; font-size: 12px; color: var(--nc-ink-2);
+  margin-bottom: 16px; font-size: 12px; color: var(--nc-ink-2);
   flex-wrap: wrap; justify-content: center;
 }
 
@@ -474,7 +474,7 @@ html, body {
 /* Meaning with drop cap */
 .nc-meaning {
   font-size: 18px; line-height: 1.7;
-  text-align: left; margin: 0 0 36px;
+  text-align: left; margin: 0 0 16px;
   color: var(--nc-ink); max-width: 44ch;
   transition: transform 0.2s ease-in-out;
   &:hover { transform: scale(1.02); }
@@ -492,7 +492,7 @@ html, body {
 /* Gilt divider */
 .nc-divider {
   display: flex; align-items: center; gap: 14px;
-  margin: 8px auto 36px;
+  margin: 0 auto 16px;
   width: 100%; max-width: 300px;
 }
 
@@ -507,7 +507,7 @@ html, body {
 }
 
 /* Blocks (origin, examples, syn/ant) */
-.nc-block { width: 100%; margin-bottom: 32px; }
+.nc-block { width: 100%; margin-bottom: 16px; }
 
 .nc-block-lbl {
   font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
@@ -534,8 +534,8 @@ html, body {
 .nc-ex-list { list-style: none; margin: 0; padding: 0; }
 
 .nc-ex {
-  display: grid; grid-template-columns: 26px 1fr; gap: 14px;
-  margin-bottom: 16px; padding-bottom: 16px;
+  display: grid; grid-template-columns: 26px 1fr; gap: 10px;
+  margin-bottom: 10px; padding-bottom: 10px;
   border-bottom: 1px dashed var(--nc-rule);
   &:last-child { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
 }
@@ -562,7 +562,7 @@ html, body {
 
 /* Syn/Ant pair grid */
 .nc-pair {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 28px; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%;
   @media (max-width: 540px) { grid-template-columns: 1fr; }
 }
 
