@@ -1,22 +1,13 @@
-<div class="container">
-
-  <h1 class="title text-center mt-2 p-2">{{ title }}</h1>
-  <div class="date-display">
-    <span class="date-latin">{{ todayLatin }}</span>
-    <span class="date-english">{{ todayEnglish }}</span>
+<div class="nc-screen">
+  <div class="nc-screen-hd">
+    <div class="nc-screen-eyebrow">· {{ todayLatin }} ·</div>
+    <h2><em>Verbum Diēī</em></h2>
+    <p>The word held aloft today.</p>
   </div>
 
-  @if (wordOfTheDay$ | async) {
-    @let wordOfTheDay = wordOfTheDay$ | async;
-    @if (wordOfTheDay)  {
-      <app-scroll [wordOfTheDay]="wordOfTheDay"></app-scroll>
-    }
+  @if (wordOfTheDay$ | async; as wordOfTheDay) {
+    <app-scroll [wordOfTheDay]="wordOfTheDay"></app-scroll>
   } @else {
-    <p class="loading-message">📜 Verba inveniuntur... (Loading...)</p>
+    <p class="nc-loading">Verba inveniuntur…</p>
   }
-
-  <button class="arbitrium-btn" routerLink="/casuale">
-    <span class="btn-latin">ARBITRIVM</span>
-    <span class="btn-english">RANDOM</span>
-  </button>
 </div>

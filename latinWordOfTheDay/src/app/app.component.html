@@ -1,40 +1,46 @@
-<html>
-<div class="container align-content-center">
-  <p-menubar [model]="items">
-    <ng-template #item let-item let-root="root">
-      <a *ngIf="item.routerLink" [routerLink]="item.routerLink" routerLinkActive="p-menubar-item-link-active" class="p-menubar-item-link menu-item-hover">
-        <span [class]="item.icon"></span>
-        <span class="menu-label">
-          <span class="menu-latin">{{ item.label }}</span>
-          <span class="menu-english">{{ item.englishLabel || item.label }}</span>
-        </span>
-      </a>
-      <a *ngIf="!item.routerLink" class="p-menubar-item-link menu-item-hover">
-        <span [class]="item.icon"></span>
-        <span class="menu-label">
-          <span class="menu-latin">{{ item.label }}</span>
-          <span class="menu-english">{{ item.englishLabel || item.label }}</span>
-        </span>
-        <span class="pi pi-angle-down ml-1"></span>
-      </a>
-    </ng-template>
-  </p-menubar>
-  <header>
-  </header>
-  <main>
-    <div class="dots">
-      <span class="dot" style="--i:15;"></span>
-      <span class="dot" style="--i:19;"></span>
-      <span class="dot" style="--i:17;"></span>
-      <span class="dot" style="--i:11;"></span>
-      <span class="dot" style="--i:12"></span>
-      <span class="dot" style="--i:14"></span>
+<div class="nc-root">
+  <div class="nc-glow"></div>
+
+  <header class="nc-topbar">
+    <div class="nc-brand">
+      <div class="nc-brand-mark">V</div>
+      <div>
+        <div class="nc-brand-title">Lvcerna</div>
+        <div class="nc-brand-sub">verbārivm · noctvrnvm</div>
+      </div>
     </div>
 
+    <nav class="nc-tabs">
+      <button class="nc-tab" routerLink="/domus" [routerLinkActive]="'nc-tab-on'" #diei="routerLinkActive">
+        <em>Verbum Diēī</em>
+        @if (diei.isActive) { <span class="nc-tab-orb"></span> }
+      </button>
+      <button class="nc-tab" routerLink="/casuale" [routerLinkActive]="'nc-tab-on'" #casuale="routerLinkActive">
+        <em>Cāsuāle</em>
+        @if (casuale.isActive) { <span class="nc-tab-orb"></span> }
+      </button>
+      <button class="nc-tab" routerLink="/favorita" [routerLinkActive]="'nc-tab-on'" #favorita="routerLinkActive">
+        <em>Favorītī</em>
+        @if (favorita.isActive) { <span class="nc-tab-orb"></span> }
+      </button>
+
+      <!-- Explorare dropdown -->
+      <div class="nc-explore" [class.nc-explore--open]="exploreOpen">
+        <button class="nc-tab nc-explore-trigger" (click)="toggleExplore($event)" type="button">
+          <em>Explorāre</em>
+          <span class="nc-explore-caret">▾</span>
+        </button>
+        <div class="nc-explore-menu" (click)="$event.stopPropagation()">
+          <button class="nc-explore-item" routerLink="/de" (click)="closeExplore()" routerLinkActive="nc-explore-item--active">De factore</button>
+          <button class="nc-explore-item" routerLink="/cur" (click)="closeExplore()" routerLinkActive="nc-explore-item--active">Cur</button>
+          <button class="nc-explore-item" routerLink="/donare" (click)="closeExplore()" routerLinkActive="nc-explore-item--active">Dōnāre</button>
+          <button class="nc-explore-item" routerLink="/aditus" (click)="closeExplore()" routerLinkActive="nc-explore-item--active">Aditus</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="nc-main">
+    <router-outlet></router-outlet>
   </main>
-
-  <router-outlet></router-outlet>
 </div>
-
-</html>
-

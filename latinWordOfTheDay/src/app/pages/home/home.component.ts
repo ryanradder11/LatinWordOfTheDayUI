@@ -6,7 +6,7 @@ import {Store} from "@ngrx/store";
 import {loadWordOfTheDay, loadWordOfTheDayByFavorite, stopTimer} from "../../store/word-of-the-day.actions";
 import {selectWordOfTheDay} from "../../store/word-of-the-day.selectors";
 import {WordOfTheDay} from "../../store/word-of-the-day.state";
-import {ActivatedRoute, RouterLink} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {RomanNumeralPipe} from "../../pipes/roman-numeral.pipe";
 
 const LATIN_MONTHS = [
@@ -20,7 +20,6 @@ const LATIN_MONTHS = [
   imports: [
     ScrollComponent,
     AsyncPipe,
-    RouterLink
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

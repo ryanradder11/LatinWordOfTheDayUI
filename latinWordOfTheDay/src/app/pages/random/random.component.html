@@ -1,29 +1,38 @@
-<div class="container">
+<div class="nc-screen">
+  <div class="nc-screen-hd">
+    <div class="nc-screen-eyebrow">· sors verbōrum ·</div>
+    <h2><em>Verbum Cāsuāle</em></h2>
+    <p>A new word, drawn from the dark.</p>
+  </div>
 
-  <h1 class="title text-center mt-2 p-2">{{ title }}</h1>
-  <div class="text-center mb-3 mt-3">
-    @if (timerActive$ | async) {
-      <p class="timer-message">🕰️ Tempus fugit...{{time}}</p>
-      <button class="timer-button" (click)="stopTimer()">Stop Timer</button>
-    } @else {
-      <button class="timer-button ancient-latin" (click)="toggleTimer(2000)">2 Seconds</button>
-      <button class="timer-button ancient-latin" (click)="toggleTimer(5000)">5 Seconds</button>
-      <button class="timer-button ancient-latin" (click)="toggleTimer(10000)">10 Seconds</button>
-      <button class="timer-button ancient-latin" (click)="toggleTimer(30000)">30 Seconds</button>
+  <!-- Controls -->
+  <div class="nc-controls">
+    <div class="nc-controls-lbl">interval</div>
+    <div class="nc-controls-buttons">
+      @for (opt of timerOptions; track opt.ms) {
+        <button class="nc-cbtn" [class.nc-cbtn-on]="intervalMs === opt.ms"
+                (click)="setIntervalMs(opt.ms)" type="button">
+          {{ opt.label }}
+        </button>
+      }
+    </div>
+    @if (intervalMs > 0) {
+      <span class="nc-controls-sep">·</span>
+      <button class="nc-cbtn" (click)="togglePause()" type="button">
+        {{ paused ? 'resume' : 'pause' }}
+      </button>
+      <button class="nc-cbtn" (click)="shuffle()" type="button">shuffle</button>
     }
   </div>
 
-  @if (wordOfTheDay$ | async) {
-    @let wordOfTheDay = wordOfTheDay$ | async;
-    @if (wordOfTheDay)  {
-      <app-scroll [wordOfTheDay]="wordOfTheDay"></app-scroll>
-    }
-  } @else {
-    <p class="loading-message">📜 Verba inveniuntur... (Loading...)</p>
-  }
+  <!-- Progress bar (always in DOM so ViewChild resolves; hidden when not active) -->
+  <div class="nc-prog" [style.opacity]="intervalMs > 0 && !paused ? '1' : '0'">
+    <div class="nc-prog-bar" #progressBar></div>
+  </div>
 
-  <button class="arbitrium-btn" (click)="loadRandom()">
-    <span class="btn-latin">ARBITRIVM</span>
-    <span class="btn-english">RANDOM</span>
-  </button>
+  @if (wordOfTheDay$ | async; as wordOfTheDay) {
+    <app-scroll [wordOfTheDay]="wordOfTheDay"></app-scroll>
+  } @else {
+    <p class="nc-loading">Verba inveniuntur…</p>
+  }
 </div>

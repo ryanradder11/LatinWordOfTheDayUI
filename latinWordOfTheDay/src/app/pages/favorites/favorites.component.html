@@ -1,26 +1,30 @@
+<div class="nc-screen">
+  <div class="nc-screen-hd">
+    <div class="nc-screen-eyebrow">· libellus tuus ·</div>
+    <h2><em>Favorītī</em></h2>
+    @if (favorites$ | async; as favorites) {
+      <p>{{ favorites.length === 0 ? 'Your private book is still empty.' : favorites.length + ' words kept close.' }}</p>
+    }
+  </div>
 
-<div class="container">
-
-<h1 class="title text-center mt-2 p-2">{{ title }}</h1>
-
-
-@if (favorites$ | async) {
-  @let favorites = favorites$ | async;
-  @if (favorites)  {
-
-    <div class="scroll">
-      <ul>
-        @for ( favorite of favorites$  | async; track favorite) {
-          <li class="favorite cursor-pointer" [routerLink]="['/' + ROUTES.HOME, favorite.id]">
-            <span class="fav-id">#{{favorite.id}}</span>
-            <span class="fav-word">{{favorite.word | capitalize}}</span>
-          </li>
+  @if (favorites$ | async; as favorites) {
+    @if (favorites.length === 0) {
+      <div class="nc-empty">
+        <div class="nc-empty-orn">✶</div>
+        <p>Touch the star beside any word to keep it.</p>
+      </div>
+    } @else {
+      <div class="nc-faves">
+        @for (fav of favorites; track fav.id) {
+          <button class="nc-fave" (click)="navigateToWord(fav)" type="button">
+            <div class="nc-fave-disc">{{ fav.word.charAt(0) }}</div>
+            <div>
+              <div class="nc-fave-word">{{ fav.word }}</div>
+            </div>
+            <span class="nc-fave-arrow">→</span>
+          </button>
         }
-      </ul>
-    </div>
-
+      </div>
+    }
   }
-} @else {
-  <p class="loading-message">📜 Verba inveniuntur... (Loading...)</p>
-}
 </div>
