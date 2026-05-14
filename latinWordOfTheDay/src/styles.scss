@@ -427,6 +427,7 @@ html, body {
   display: flex; gap: 12px; align-items: center;
   margin-bottom: 16px; font-size: 12px; color: var(--nc-ink-2);
   flex-wrap: wrap; justify-content: center;
+  width: 100%;
 }
 
 .nc-play {
