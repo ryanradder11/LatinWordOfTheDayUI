@@ -189,12 +189,26 @@ html, body {
   color: rgba(232, 216, 176, 0.55);
   cursor: pointer; padding: 6px 2px;
   position: relative;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
   transition: color .15s;
   em { font-style: normal; }
   &:hover { color: var(--nc-parch); }
 }
 
+.nc-tab-en {
+  font-size: 7px; letter-spacing: 0.18em;
+  opacity: 0; transition: opacity .2s;
+  line-height: 1;
+}
+.nc-tab:hover .nc-tab-en { opacity: 0.6; }
+
 .nc-tab.nc-tab-on { color: var(--nc-gilt); }
+
+.nc-en {
+  font-size: 8px; letter-spacing: 0.12em;
+  opacity: 0; transition: opacity .2s;
+}
+.nc-explore-item:hover .nc-en { opacity: 0.6; }
 
 .nc-tab-orb {
   position: absolute; bottom: -3px; left: 50%;

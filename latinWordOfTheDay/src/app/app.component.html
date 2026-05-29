@@ -13,14 +13,17 @@
     <nav class="nc-tabs">
       <button class="nc-tab" routerLink="/domus" [routerLinkActive]="'nc-tab-on'" #diei="routerLinkActive">
         <em>Verbum Diēī</em>
+        <span class="nc-tab-en">Word of the Day</span>
         @if (diei.isActive) { <span class="nc-tab-orb"></span> }
       </button>
       <button class="nc-tab" routerLink="/casuale" [routerLinkActive]="'nc-tab-on'" #casuale="routerLinkActive">
         <em>Cāsuāle</em>
+        <span class="nc-tab-en">Random</span>
         @if (casuale.isActive) { <span class="nc-tab-orb"></span> }
       </button>
       <button class="nc-tab" routerLink="/favorita" [routerLinkActive]="'nc-tab-on'" #favorita="routerLinkActive">
         <em>Favorītī</em>
+        <span class="nc-tab-en">Favorites</span>
         @if (favorita.isActive) { <span class="nc-tab-orb"></span> }
       </button>
 
@@ -28,13 +31,14 @@
       <div class="nc-explore" [class.nc-explore--open]="exploreOpen">
         <button class="nc-tab nc-explore-trigger" (click)="toggleExplore($event)" type="button">
           <em>Explorāre</em>
+          <span class="nc-tab-en">Explore</span>
           <span class="nc-explore-caret">▾</span>
         </button>
         <div class="nc-explore-menu" (click)="$event.stopPropagation()">
-          <button class="nc-explore-item" routerLink="/de" (click)="closeExplore()" routerLinkActive="nc-explore-item--active">De factore</button>
-          <button class="nc-explore-item" routerLink="/cur" (click)="closeExplore()" routerLinkActive="nc-explore-item--active">Cur</button>
-          <button class="nc-explore-item" routerLink="/donare" (click)="closeExplore()" routerLinkActive="nc-explore-item--active">Dōnāre</button>
-          <button class="nc-explore-item" routerLink="/aditus" (click)="closeExplore()" routerLinkActive="nc-explore-item--active">Aditus</button>
+          <button class="nc-explore-item" routerLink="/de" (click)="closeExplore()" routerLinkActive="nc-explore-item--active">De factore <span class="nc-en">About</span></button>
+          <button class="nc-explore-item" routerLink="/cur" (click)="closeExplore()" routerLinkActive="nc-explore-item--active">Cur <span class="nc-en">Why</span></button>
+          <button class="nc-explore-item" routerLink="/donare" (click)="closeExplore()" routerLinkActive="nc-explore-item--active">Dōnāre <span class="nc-en">Donate</span></button>
+          <button class="nc-explore-item" routerLink="/aditus" (click)="closeExplore()" routerLinkActive="nc-explore-item--active">Aditus <span class="nc-en">Login</span></button>
         </div>
       </div>
     </nav>
